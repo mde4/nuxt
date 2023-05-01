@@ -62,6 +62,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   data() {
     return {
@@ -73,11 +75,13 @@ export default {
       ],
     };
   },
-
+  computed: {
+    ...mapState(["drawer", "cartCount","isUserLoggedIn"]),
+  },
   methods: {
-    // ...mapMutations({
-    //   setDrawer: "SET_DRAWER",
-    // }),
+     ...mapMutations({
+       setDrawer: "SET_DRAWER",
+     }),
 
     logout() {
       this.$store.dispatch("setToken", null);
@@ -135,6 +139,9 @@ export default {
 }
 
 .farsi {
-  font-family: Tahoma !important;
+  font-family: Yekan !important;
+  position: static;
+  border-bottom: 1px;
+
 }
 </style>

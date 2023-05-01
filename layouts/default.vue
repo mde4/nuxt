@@ -1,23 +1,29 @@
 <template>
   <div>
     <page-header />
+    <!-- <drawer/> -->
 
     <nuxt />
-
+    <no-ssr>
+      <notifications position="bottom left"/>
+    </no-ssr>
     <page-footer />
   </div>
 </template>
 
 <script>
-  import PageHeader from '@/components/Header';
-  import PageFooter from '@/components/Footer';
+import PageHeader from '@/components/Header';
+import PageFooter from '@/components/Footer';
 
-  export default {
-    components: {
-      PageHeader,
-      PageFooter,
-    },
-  }
+
+export default {
+  components: {
+    PageHeader,
+    PageFooter,
+    Drawer: () => import("@/components/Drawer"),
+
+  },
+}
 </script>
 
 <style>

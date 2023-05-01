@@ -6,7 +6,7 @@ export default {
     titleTemplate: '%s - mamaniniha',
     title: 'mamaniniha',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'fa'
     },
     meta: [
       { charset: 'utf-8' },
@@ -27,10 +27,15 @@ export default {
     '@/assets/css/animate.min.css',
     '@/assets/css/main.css',
     '@/assets/css/custom.css',
+    '@/assets/fonts/yekan.css'
+
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/notifications.js', mode: 'client' },
+    // { src: '~/plugins/persistedState.js', mode:'client'},
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,19 +46,22 @@ export default {
     // https://go.nuxtjs.dev/eslint
     // '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    ['@nuxtjs/vuetify', { rtl: true }],
   ],
+  publicRuntimeConfig: {
+    API_LOCATION: process.env.API_LOCATION || 'http://127.0.0.1:3443/files/'
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: 'http://localhost:3443/',
   },
 
   modules: [
@@ -71,7 +79,6 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      rtl:true,
       dark: true,
       themes: {
         dark: {
@@ -90,5 +97,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
-  loading:{color:"#fff"}
+  loading: { color: "#fff" }
 }
